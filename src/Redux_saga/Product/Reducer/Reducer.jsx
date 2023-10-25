@@ -1,19 +1,19 @@
-
-import { GET_PRODUCT_ERROR, GET_PRODUCT_PROGRESS, GET_PRODUCT_SUCCESS } from './../Action/Action';
+import { DELETE_PRODUCT_DELETE, GET_PRODUCT_ERROR, GET_PRODUCT_PROGRESS, GET_PRODUCT_SUCCESS } from './../Action/Action';
 
 const initialstate = {
     product: [],
-    getProductProgress: false,
+
+    getproductProgress: false,
     getproductError: null,
     dataIsLoaded: false,
 }
 
-const productReducer = (state = initialstate, action) => {
+export const productReducer = (state = initialstate, action) => {
     switch (action.type) {
         case GET_PRODUCT_PROGRESS: {
             return {
                 ...state,
-                getProductProgress: true
+                getproductProgress: true
             }
         }
         case GET_PRODUCT_ERROR: {
@@ -29,6 +29,10 @@ const productReducer = (state = initialstate, action) => {
                 product: action.data,
                 dataIsLoaded: true
             }
+        }
+
+        case DELETE_PRODUCT_DELETE: {
+            return state;
         }
 
         default: {

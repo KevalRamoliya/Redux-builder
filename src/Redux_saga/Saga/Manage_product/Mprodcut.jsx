@@ -1,6 +1,7 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
 import { getProduct } from './../../Product/Api/Api';
 import { GET_PRODUCT_ERROR, GET_PRODUCT_SUCCESS } from "../../Product/Action/Action";
+import { DELETE_URL } from "../../Constant";
 
 
 export function* handleGetProduct(action) {
@@ -15,6 +16,10 @@ export function* handleGetProduct(action) {
             yield put({ type: GET_PRODUCT_ERROR, data })
         }
     } catch (e) {
-        yield put({ type: GET_PRODUCT_ERROR, e });  
+        yield put({ type: GET_PRODUCT_ERROR, e });
     }
+}
+
+export function* deleteitem() {
+    yield takeEvery(DELETE_URL)
 }
