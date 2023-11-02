@@ -9,9 +9,9 @@ export const GET_URL = "/posts"
 
 //Post url
 
-export const POST_URLI = "/posts"
+export const POST_URL = "/posts"
 
 
 //delete url
 
-export const DELETE_URL = "/posts"
+export const DELETE_URL = "/posts/" //+id

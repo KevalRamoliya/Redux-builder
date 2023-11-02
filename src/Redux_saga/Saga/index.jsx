@@ -1,7 +1,7 @@
 import { all } from "@redux-saga/core/effects";
-import { getProductSaga } from "./Root_saga/Rootsaga";
+import { deleteProductSaga, getProductSaga, postProductSaga } from "./Root_saga/Rootsaga";
 
 
 export function* rootSaga() {
-    yield all([getProductSaga()])
+    yield all([getProductSaga(), postProductSaga(), deleteProductSaga()])
 }

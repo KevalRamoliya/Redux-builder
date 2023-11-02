@@ -1,11 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 import Data from './Component/Data';
 
 function App() {
   return (
     <div className="App">
-      <Data/>
+      <Data />
     </div>
   );
 }

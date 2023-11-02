@@ -1,7 +1,18 @@
 import { takeLatest } from "redux-saga/effects";
-import { GET_PRODUCT_PROGRESS } from "../../Product/Action/Action";
-import { handleGetProduct } from "../Manage_product/Mprodcut";
+import { DELETE_PRODUCT_PROGRESS, GET_PRODUCT_PROGRESS, POST_PRODUCT_PROGRESS } from "../../Product/Action/Action";
+import { handleGetProduct, handlePostProduct, handledeleteproduct } from "../Manage_product/Mprodcut";
 
+//getsaga
 export function* getProductSaga() {
-    yield takeLatest(GET_PRODUCT_PROGRESS,handleGetProduct);
+    yield takeLatest(GET_PRODUCT_PROGRESS, handleGetProduct);
+}
+
+//postsaga
+export function* postProductSaga() {
+    yield takeLatest(POST_PRODUCT_PROGRESS, handlePostProduct)
+}
+
+//deletesaga
+export function* deleteProductSaga() {
+    yield takeLatest(DELETE_PRODUCT_PROGRESS, handledeleteproduct)
 }
