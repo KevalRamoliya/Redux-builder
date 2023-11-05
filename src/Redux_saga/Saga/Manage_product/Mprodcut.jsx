@@ -1,6 +1,6 @@
 import { call, put } from "redux-saga/effects";
-import { getProduct, postProduct, removeProduct } from './../../Product/Api/Api';
-import { DELETE_PRODUCT_ERROR, DELETE_PRODUCT_SUCCESS, GET_PRODUCT_ERROR, GET_PRODUCT_SUCCESS, POST_PRODUCT_ERROR, POST_PRODUCT_SUCCESS } from "../../Product/Action/Action";
+import { getProduct, postProduct, removeProduct, updateProduct } from './../../Product/Api/Api';
+import { DELETE_PRODUCT_ERROR, DELETE_PRODUCT_SUCCESS, GET_PRODUCT_ERROR, GET_PRODUCT_SUCCESS, POST_PRODUCT_ERROR, POST_PRODUCT_SUCCESS, UPDATE_PRODUCT_ERROR, UPDATE_PRODUCT_SUCCESS } from "../../Product/Action/Action";
 
 //handlegetproduct
 export function* handleGetProduct(action) {
@@ -39,7 +39,7 @@ export function* handlePostProduct(action) {
 //handledeleteproduct
 export function* handledeleteproduct(action) {
     try {
-        const res = yield call(removeProduct,action);
+        const res = yield call(removeProduct, action);
         const data = res.data;
         const status = res.status;
         console.log(data);
@@ -51,5 +51,22 @@ export function* handledeleteproduct(action) {
         }
     } catch (e) {
         yield put({ type: DELETE_PRODUCT_ERROR, e });
+    }
+}
+
+//updateproduct
+export function* handleupdateproduct(action) {
+    try {
+        const res = yield call(updateProduct, action);
+        const data = res.data;
+        const status = res.status;
+
+        if (status === 200) {
+            yield put({ type: UPDATE_PRODUCT_SUCCESS, data })
+        } else {
+            yield put({ type: UPDATE_PRODUCT_ERROR, data })
+        }
+    } catch (e) {
+        yield put({ type: UPDATE_PRODUCT_ERROR, e });
     }
 }

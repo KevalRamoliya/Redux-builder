@@ -1,4 +1,4 @@
-import { DELETE_PRODUCT_ERROR, DELETE_PRODUCT_PROGRESS, DELETE_PRODUCT_SUCCESS, GET_PRODUCT_ERROR, GET_PRODUCT_PROGRESS, GET_PRODUCT_SUCCESS, POST_PRODUCT_ERROR, POST_PRODUCT_PROGRESS, POST_PRODUCT_SUCCESS } from './../Action/Action';
+import { DELETE_PRODUCT_ERROR, DELETE_PRODUCT_PROGRESS, DELETE_PRODUCT_SUCCESS, GET_PRODUCT_ERROR, GET_PRODUCT_PROGRESS, GET_PRODUCT_SUCCESS, POST_PRODUCT_ERROR, POST_PRODUCT_PROGRESS, POST_PRODUCT_SUCCESS, UPDATE_PRODUCT_ERROR, UPDATE_PRODUCT_PROGRESS, UPDATE_PRODUCT_SUCCESS } from './../Action/Action';
 
 const initialstate = {
     product: [],
@@ -11,6 +11,9 @@ const initialstate = {
 
     deleteproductProgress: false,
     deleteproductError: null,
+
+    updateproductProgress: false,
+    updateproductError: null,
 
     dataIsLoaded: false,
 }
@@ -80,6 +83,33 @@ export const productReducer = (state = initialstate, action) => {
             return {
                 ...state,
                 product: state.product.filter((e) => e.id !== action.data),
+                dataIsLoaded: true
+            }
+        }
+
+        //Update product
+        case UPDATE_PRODUCT_PROGRESS: {
+            return {
+                ...state,
+                updateproductProgress: true
+            }
+        }
+        case UPDATE_PRODUCT_ERROR: {
+            return {
+                ...state,
+                updateproductError: action.data
+            }
+        }
+        case UPDATE_PRODUCT_SUCCESS: {
+            return {
+                ...state,
+                product: state.product.map((item) => {
+                    if (item.id === action.data.id) {
+                        return { ...item, ...action.data }
+                    } else {
+                        return item
+                    }
+                }),
                 dataIsLoaded: true
             }
         }

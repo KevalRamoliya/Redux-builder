@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { DELETE_PRODUCT_PROGRESS, GET_PRODUCT_PROGRESS, POST_PRODUCT_PROGRESS } from '../Redux_saga/Product/Action/Action';
+import { DELETE_PRODUCT_PROGRESS, GET_PRODUCT_PROGRESS, POST_PRODUCT_PROGRESS, UPDATE_PRODUCT_PROGRESS } from '../Redux_saga/Product/Action/Action';
 import Swal from 'sweetalert2'
 
 
@@ -51,6 +51,16 @@ const Data = () => {
         dispatch({ type: DELETE_PRODUCT_PROGRESS, payload: id })
     }
 
+    const viewdata = (e) => {
+        // console.log(e);
+        setfdata(e)
+    }
+
+    const updatedata = () => {
+        console.log(fdata);
+        dispatch({ type: UPDATE_PRODUCT_PROGRESS, payload: fdata })
+        setfdata({})
+    }
     return (
         <div >
             <div className='box'>
@@ -58,7 +68,7 @@ const Data = () => {
                     <span className="text-center">login</span>
 
                     <div className='input-container'>
-                        <input className='text-center' type="text" name='title' onChange={chnage} value={fdata.title || ""} required="" />
+                        <input className='mb-5' type="text" name='title' onChange={chnage} value={fdata.title || ""} required="" />
                         <label>Fist Name</label>
                     </div>
 
@@ -66,7 +76,8 @@ const Data = () => {
                         <input type="text" name='author' onChange={chnage} value={fdata.author || ""} required="" />
                         <label>Last Name</label>
                     </div>
-                    <button type='button' className='btn' onClick={submitdata}>Submit</button>
+                    <button type='button' className='btn mr-3' onClick={submitdata}>Submit</button>
+                    <button type='button' className='btn' onClick={updatedata}>Updata</button>
 
                 </form>
 
@@ -89,7 +100,8 @@ const Data = () => {
                                             <td>{e.title}</td>
                                             <td>{e.author}</td>
                                             <td>
-                                                <button onClick={() => removedata(e.id)}>Delete</button>
+                                                <button className='mr-2' onClick={() => removedata(e.id)}>Delete</button>
+                                                <button onClick={() => viewdata(e)}>Edit</button>
                                             </td>
                                         </tr>
                                     </>

@@ -1,5 +1,5 @@
 import axios from "axios"
-import { BASE_URL, DELETE_URL, GET_URL, POST_URL } from './../../Constant';
+import { BASE_URL, DELETE_URL, GET_URL, POST_URL, UPDATE_URL } from './../../Constant';
 
 //get product
 export const getProduct = () => {
@@ -33,6 +33,21 @@ export const postProduct = (action) => {
 //delete product
 export const removeProduct = (action) => {
     return axios.delete(BASE_URL + DELETE_URL + action.payload)
+        .then((res) => {
+            const data = action.payload;
+            const status = res.status;
+            return {
+                data,
+                status
+            }
+        })
+        .catch((e) => console.log(e));
+}
+
+//update
+export const updateProduct = (action) => {
+    const id = action.payload.id
+    return axios.put(`${BASE_URL}${UPDATE_URL}${id}`, action.payload)
         .then((res) => {
             const data = action.payload;
             const status = res.status;

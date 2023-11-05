@@ -15,3 +15,6 @@ export const POST_URL = "/posts"
 //delete url
 
 export const DELETE_URL = "/posts/" //+id
+
+//update url
+export const UPDATE_URL = "/posts/" //+id
